@@ -102,6 +102,8 @@ The project is MIT licensed. Model/runtime licenses are separate. It is independ
 
 ## For the coaching group
 
+Start with [Attention Desk: blueprint and offline practice](blueprints/attention-desk/README.md): eight editable workflow templates, two synthetic exercises, a DreyOS dashboard contract and a ready-to-copy coaching lesson. Live inbox connectors, dashboard integration and notification delivery are not installed by this package.
+
 See [ten concrete trial workflows](docs/use-cases.md). Start with public-document relevance or skill shortlisting. Compare proposed choices to reviewed answers before enabling any workflow. Keep arithmetic, money, authorization and execution in code or existing approval flows.
 
 Jev Relay helps entrepreneurs build AI systems instead of hiring an employee by routing bounded decisions while keeping consequential actions under review.
