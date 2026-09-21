@@ -1,0 +1,1 @@
+{"state":"Find the official installation instructions.","questions":{"route":{"type":"choice","instructions":"Which handler fits the actual requested work?","criteria":{"research":"Find and verify external information.","coding":"Implement or debug software.","writing":"Write or revise prose.","unknown":"None of these or not enough information."}}}}

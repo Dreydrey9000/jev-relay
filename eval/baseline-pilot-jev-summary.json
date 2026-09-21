@@ -1,0 +1,10 @@
+{
+  "provider": "jev",
+  "attempted": 24,
+  "valid_responses": 24,
+  "correct": 22,
+  "accuracy": 0.9166666666666666,
+  "mean_brier": 0.050725,
+  "median_seconds": 0.503,
+  "scope": "Small synthetic pilot, not a domain accuracy guarantee. Timings include network and serving overhead."
+}

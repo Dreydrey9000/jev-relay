@@ -1,0 +1,680 @@
+[
+  {
+    "id": "research",
+    "group": "task-routing",
+    "gold": "research",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "research",
+          "confidence": 0.99,
+          "probabilities": {
+            "research": 0.99,
+            "coding": 0.0,
+            "writing": 0.0,
+            "none": 0.01
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 376,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0002000000000000002,
+    "schema_valid": true,
+    "seconds": 0.562
+  },
+  {
+    "id": "coding",
+    "group": "task-routing",
+    "gold": "coding",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "coding",
+          "confidence": 0.98,
+          "probabilities": {
+            "coding": 0.99,
+            "research": 0.0,
+            "writing": 0.0,
+            "none": 0.01
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 378,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0002000000000000002,
+    "schema_valid": true,
+    "seconds": 0.433
+  },
+  {
+    "id": "writing",
+    "group": "task-routing",
+    "gold": "writing",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "writing",
+          "confidence": 0.99,
+          "probabilities": {
+            "none": 0.01,
+            "coding": 0.0,
+            "research": 0.0,
+            "writing": 0.99
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 377,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0002000000000000002,
+    "schema_valid": true,
+    "seconds": 0.431
+  },
+  {
+    "id": "none",
+    "group": "task-routing",
+    "gold": "none",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "none",
+          "confidence": 1.0,
+          "probabilities": {
+            "coding": 0.0,
+            "writing": 0.0,
+            "none": 1.0,
+            "research": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 370,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.466
+  },
+  {
+    "id": "quoted",
+    "group": "task-routing",
+    "gold": "writing",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "writing",
+          "confidence": 0.97,
+          "probabilities": {
+            "research": 0.0,
+            "coding": 0.01,
+            "none": 0.01,
+            "writing": 0.98
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0006000000000000007,
+    "schema_valid": true,
+    "seconds": 0.532
+  },
+  {
+    "id": "explain",
+    "group": "task-routing",
+    "gold": "writing",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "writing",
+          "confidence": 0.99,
+          "probabilities": {
+            "none": 0.0,
+            "writing": 1.0,
+            "research": 0.0,
+            "coding": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 381,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.432
+  },
+  {
+    "id": "support",
+    "group": "evidence-check",
+    "gold": "supported",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "supported",
+          "confidence": 1.0,
+          "probabilities": {
+            "contradicted": 0.0,
+            "unknown": 0.0,
+            "supported": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 381,
+        "output_tokens": 41
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.382
+  },
+  {
+    "id": "conflict",
+    "group": "evidence-check",
+    "gold": "contradicted",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "contradicted",
+          "confidence": 1.0,
+          "probabilities": {
+            "contradicted": 1.0,
+            "supported": 0.0,
+            "unknown": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 44
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.553
+  },
+  {
+    "id": "missing",
+    "group": "evidence-check",
+    "gold": "unknown",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "unknown",
+          "confidence": 1.0,
+          "probabilities": {
+            "contradicted": 0.0,
+            "unknown": 1.0,
+            "supported": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 380,
+        "output_tokens": 41
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.404
+  },
+  {
+    "id": "scope",
+    "group": "evidence-check",
+    "gold": "unknown",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "unknown",
+          "confidence": 0.96,
+          "probabilities": {
+            "supported": 0.0,
+            "unknown": 0.97,
+            "contradicted": 0.03
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 41
+      }
+    },
+    "correct": true,
+    "brier": 0.0018000000000000017,
+    "schema_valid": true,
+    "seconds": 0.511
+  },
+  {
+    "id": "license",
+    "group": "evidence-check",
+    "gold": "contradicted",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "contradicted",
+          "confidence": 1.0,
+          "probabilities": {
+            "supported": 0.0,
+            "unknown": 0.0,
+            "contradicted": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 382,
+        "output_tokens": 44
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.462
+  },
+  {
+    "id": "injected-evidence",
+    "group": "evidence-check",
+    "gold": "contradicted",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "contradicted",
+          "confidence": 0.96,
+          "probabilities": {
+            "unknown": 0.02,
+            "supported": 0.0,
+            "contradicted": 0.98
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 393,
+        "output_tokens": 44
+      }
+    },
+    "correct": true,
+    "brier": 0.0008000000000000008,
+    "schema_valid": true,
+    "seconds": 0.452
+  },
+  {
+    "id": "limits",
+    "group": "research-ranking",
+    "gold": "relevant",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "relevant",
+          "confidence": 1.0,
+          "probabilities": {
+            "adjacent": 0.0,
+            "irrelevant": 0.0,
+            "relevant": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 376,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.556
+  },
+  {
+    "id": "adjacent",
+    "group": "research-ranking",
+    "gold": "adjacent",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "irrelevant",
+          "confidence": 0.28,
+          "probabilities": {
+            "relevant": 0.0,
+            "adjacent": 0.48,
+            "irrelevant": 0.52
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 371,
+        "output_tokens": 45
+      }
+    },
+    "correct": false,
+    "brier": 0.5408000000000001,
+    "schema_valid": true,
+    "seconds": 0.487
+  },
+  {
+    "id": "off-topic",
+    "group": "research-ranking",
+    "gold": "irrelevant",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "irrelevant",
+          "confidence": 1.0,
+          "probabilities": {
+            "relevant": 0.0,
+            "adjacent": 0.0,
+            "irrelevant": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 371,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 1.48
+  },
+  {
+    "id": "howto",
+    "group": "research-ranking",
+    "gold": "relevant",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "relevant",
+          "confidence": 0.94,
+          "probabilities": {
+            "relevant": 0.96,
+            "irrelevant": 0.0,
+            "adjacent": 0.04
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 381,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.003200000000000003,
+    "schema_valid": true,
+    "seconds": 0.57
+  },
+  {
+    "id": "commit",
+    "group": "content-triage",
+    "gold": "action",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "action",
+          "confidence": 1.0,
+          "probabilities": {
+            "none": 0.0,
+            "action": 1.0,
+            "status": 0.0,
+            "idea": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 369,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.612
+  },
+  {
+    "id": "idea",
+    "group": "content-triage",
+    "gold": "idea",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "idea",
+          "confidence": 1.0,
+          "probabilities": {
+            "action": 0.0,
+            "none": 0.0,
+            "status": 0.0,
+            "idea": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 371,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.431
+  },
+  {
+    "id": "status",
+    "group": "content-triage",
+    "gold": "status",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "status",
+          "confidence": 1.0,
+          "probabilities": {
+            "status": 1.0,
+            "action": 0.0,
+            "idea": 0.0,
+            "none": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 367,
+        "output_tokens": 45
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.594
+  },
+  {
+    "id": "no-action",
+    "group": "content-triage",
+    "gold": "none",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "idea",
+          "confidence": 0.33,
+          "probabilities": {
+            "action": 0.01,
+            "idea": 0.49,
+            "none": 0.36,
+            "status": 0.14
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 380,
+        "output_tokens": 45
+      }
+    },
+    "correct": false,
+    "brier": 0.6694,
+    "schema_valid": true,
+    "seconds": 0.431
+  },
+  {
+    "id": "dup",
+    "group": "duplicate-detection",
+    "gold": "same",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "same",
+          "confidence": 1.0,
+          "probabilities": {
+            "same": 1.0,
+            "different": 0.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 348,
+        "output_tokens": 31
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.564
+  },
+  {
+    "id": "different",
+    "group": "duplicate-detection",
+    "gold": "different",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "different",
+          "confidence": 1.0,
+          "probabilities": {
+            "same": 0.0,
+            "different": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 348,
+        "output_tokens": 31
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 0.495
+  },
+  {
+    "id": "artifact",
+    "group": "duplicate-detection",
+    "gold": "different",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "different",
+          "confidence": 1.0,
+          "probabilities": {
+            "same": 0.0,
+            "different": 1.0
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 354,
+        "output_tokens": 31
+      }
+    },
+    "correct": true,
+    "brier": 0.0,
+    "schema_valid": true,
+    "seconds": 1.571
+  },
+  {
+    "id": "paraphrase",
+    "group": "duplicate-detection",
+    "gold": "same",
+    "response": {
+      "model": "jev-1.13.0",
+      "answers": {
+        "decision": {
+          "type": "choice",
+          "choice": "same",
+          "confidence": 0.97,
+          "probabilities": {
+            "different": 0.01,
+            "same": 0.99
+          }
+        }
+      },
+      "usage": {
+        "input_tokens": 349,
+        "output_tokens": 31
+      }
+    },
+    "correct": true,
+    "brier": 0.0002000000000000002,
+    "schema_valid": true,
+    "seconds": 0.545
+  }
+]

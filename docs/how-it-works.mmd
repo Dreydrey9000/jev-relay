@@ -1,0 +1,11 @@
+flowchart TD
+  A[Claude Code / Codex / Hermes Jax] --> B[Validate request and trusted routing flags]
+  B -->|Routine| C[Guarded offline local model]
+  B -->|Important and sanitized and cloud allowed| D[Hosted Jev]
+  B -->|Important but cloud not permitted| F[Calling assistant reviews]
+  C -->|Answer| E[Validate response]
+  D -->|Answer| E
+  C -->|Blocked or unavailable| F
+  D -->|Unavailable| F
+  E --> F
+  F --> G[Existing permissions and action tools]
