@@ -2,7 +2,13 @@
 
 **Your messages, reduced to the decisions that need you.** A Jev Relay blueprint for DreyOS and an independently reusable coaching exercise.
 
-Status: working dashboard starter plus blueprint and offline exercises. The DreyOS owner installation now reads Gmail thread history and imported Mac text snapshots, with persistent Important / Not important / Ignored labels. The public [dashboard demo](dashboard/README.md) uses synthetic data and cannot access your accounts. No background monitoring, notifications or AI classification is enabled. Local model quality remains unverified. No paid AI account is required for practice; no savings or accuracy is promised.
+**[Open Attention Desk in DreyOS — private, sign-in required](https://dreyos.dreytools.com/#attention)** · **[Open the diagram full-size](../../docs/diagrams/attention-desk.svg)**
+
+## How it works
+
+![Attention Desk workflow](../../docs/diagrams/attention-desk.svg)
+
+Status: working dashboard starter plus blueprint and offline exercises. The DreyOS owner installation now reads Gmail thread history and imported Mac text snapshots, with persistent Important / Not important / Ignored labels. The public [starter setup instructions](dashboard/README.md) uses synthetic data and cannot access your accounts. No background monitoring, notifications or AI classification is enabled. Local model quality remains unverified. No paid AI account is required for practice; no savings or accuracy is promised.
 
 ## Choose your learning format
 
@@ -12,8 +18,6 @@ Status: working dashboard starter plus blueprint and offline exercises. The Drey
 | Aural | [Narrated walkthrough](dashboard/engine/public/attention-walkthrough.mp3) · [exact transcript](walkthrough-transcript.txt) |
 | Read / write | This setup guide, [blueprint](BLUEPRINT.md), [coaching worksheet](COACHING.md) |
 | Kinesthetic | [Run the interactive dashboard](dashboard/README.md), then try the JSON exercises below |
-
-![Attention Desk workflow](../../docs/diagrams/attention-desk.svg)
 
 ## Start here
 

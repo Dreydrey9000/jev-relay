@@ -20,3 +20,7 @@ These initial checks prove request compatibility, offline fallback and packaging
 - Narration played successfully: 110.832 seconds, no media error.
 
 Live evidence is for the single-owner DreyOS installation. The distributed demo uses synthetic data and an in-memory database. No coaching portal publication, broad DreyOS regression-suite pass, background watcher, automatic notification, paid budget cap or local model-quality result is claimed.
+
+## Queue-refresh fix — September 21
+
+Reproduced a visible bug: saving Ignored persisted the label but left the message and count in the Needs attention view. The client now reloads the selected queue after a confirmed save and announces completion. Verified live that the count dropped from 798 to 797, the item left Needs attention, and it could be restored from Ignored. The original label was restored after testing. The diagram was verified rendering on GitHub and moved above the introductory status text, alongside a direct link to the installed dashboard.

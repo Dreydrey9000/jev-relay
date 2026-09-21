@@ -1,13 +1,19 @@
 # Attention Desk dashboard starter
 
+**Using Drey's installed dashboard? [Open DreyOS → Attention Desk](https://dreyos.dreytools.com/#attention).** This GitHub page is setup documentation; it is not the running app. The private dashboard requires your existing DreyOS access.
+
 Run a synthetic, local-only version with Bun 1.4.0 (the verified runtime):
 
 ```sh
+git clone https://github.com/Dreydrey9000/jev-relay.git
+cd jev-relay
 cd blueprints/attention-desk/dashboard
 bun test engine/attention.test.ts
 node attention-ui-check.mjs
 bun run preview.ts
 ```
+
+If you already cloned the repository, use that checkout and skip the clone command. If `bun` is not found, follow the [official Bun installation instructions](https://bun.sh/docs/installation) first. Keep the terminal running while using the preview; closing it stops the local app.
 
 Open http://127.0.0.1:5779. Choose Refresh email to load the synthetic workshop message, mark it Important and save, then try Ignored and its filter. Reload to verify the label is retained for this running practice session. Stopping the server clears its in-memory practice database.
 
