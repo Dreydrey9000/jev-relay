@@ -8,6 +8,28 @@ This is an early experimental release. It routes **bounded decisions**, not enti
 
 ![How Jev Relay works](docs/how-it-works.png)
 
+## Diagrams and carousel
+
+- [How routing and fallbacks work](docs/how-it-works.png) · [editable diagram](docs/how-it-works.drawio)
+- [Open Jev ecosystem map](docs/open-jev-landscape.png) · [PDF](docs/open-jev-landscape.pdf) · [editable diagram](docs/open-jev-landscape.drawio)
+- [Carousel files and image descriptions](media/README.md)
+
+| 1. Small decisions | 2. Local advice |
+| --- | --- |
+| [![Small decisions](media/01.png)](media/01.png) | [![Local advice and review](media/02.png)](media/02.png) |
+| 3. Important checks | 4. Jev Relay |
+| [![Important checks and permission](media/03.png)](media/03.png) | [![Jev Relay open source](media/04.png)](media/04.png) |
+
+## What is actually connected
+
+| Provider | Integration | Verification |
+| --- | --- | --- |
+| Laya-MLX on Apple Silicon | The only implemented local model adapter; requires a complete checkpoint and passing resource guard | GPU runtime smoke passed; end-to-end model evaluation remains pending |
+| Hosted TypeSafe Jev | Explicit important, sanitized checks only | Live checks passed on macOS and the Jax Linux host |
+| Nimble, SemIf/OpenJev, Kev, Decider and other catalog entries | Research candidates; no adapters or automatic selection in this release | See the catalog for individual research/test status |
+
+Installing a skill makes this tool available for proactive, suitable use by the calling assistant. It does not prove a model was loaded or used. Every response reports the provider actually used. If local inference is unavailable, the caller reviews the decision directly; Relay never silently switches a routine request to a paid provider. Jax currently has no local model configured on its Linux host.
+
 ## Try it without a key or model
 
 Python 3.10+; the router itself has no third-party dependencies. The optional Laya-MLX environment requires Python 3.11+.
@@ -35,7 +57,7 @@ Ensure `~/.local/bin` is on PATH. Start a new assistant session if needed for sk
 
 See the [pinned setup and evaluation commands](docs/local-setup.md).
 
-Use a dedicated environment with [Laya-MLX](https://github.com/mizorewww/laya-mlx). Our evaluation uses MLX 0.32.2 and `aac6fef/laya-mlx` revision `20aed815fc6acde75733882e7ec0e3f28aeb9717`. Install the optional runtime with `python -m pip install -r requirements-laya.lock` in a separate Python 3.12 environment. Download its checkpoint separately into a local directory. Keep model weights out of Git. The English model file is about 843 MB; runtime memory is larger. Published Laya context limits include questions and options.
+Use a dedicated environment with [Laya-MLX](https://github.com/mizorewww/laya-mlx). The pinned evaluation environment uses MLX 0.32.2 and `aac6fef/laya-mlx` revision `20aed815fc6acde75733882e7ec0e3f28aeb9717`. Install the optional runtime with `python -m pip install -r requirements-laya.lock` in a separate Python 3.12 environment. Download its checkpoint separately into a local directory. Keep model weights out of Git. The English model file is about 843 MB; runtime memory is larger. Published Laya context limits include questions and options.
 
 Create `~/.config/jev-relay/config.json` using absolute paths:
 
