@@ -2,7 +2,18 @@
 
 **Your messages, reduced to the decisions that need you.** A Jev Relay blueprint for DreyOS and an independently reusable coaching exercise.
 
-Status: blueprint plus working offline request generator. This package does not connect to an inbox, monitor texts, send notifications, or install a DreyOS dashboard. Local model quality remains unverified. No paid AI account is required for the exercise; no savings or accuracy is promised.
+Status: working dashboard starter plus blueprint and offline exercises. The DreyOS owner installation now reads Gmail thread history and imported Mac text snapshots, with persistent Important / Not important / Ignored labels. The public [dashboard demo](dashboard/README.md) uses synthetic data and cannot access your accounts. No background monitoring, notifications or AI classification is enabled. Local model quality remains unverified. No paid AI account is required for practice; no savings or accuracy is promised.
+
+## Choose your learning format
+
+| Format | Resource |
+| --- | --- |
+| Visual | [Rendered workflow diagram](../../docs/diagrams/attention-desk.svg) · [editable source](../../docs/diagrams/attention-desk.mmd) |
+| Aural | [Narrated walkthrough](dashboard/engine/public/attention-walkthrough.mp3) · [exact transcript](walkthrough-transcript.txt) |
+| Read / write | This setup guide, [blueprint](BLUEPRINT.md), [coaching worksheet](COACHING.md) |
+| Kinesthetic | [Run the interactive dashboard](dashboard/README.md), then try the JSON exercises below |
+
+![Attention Desk workflow](../../docs/diagrams/attention-desk.svg)
 
 ## Start here
 
@@ -26,5 +37,5 @@ Files are MIT licensed under the repository license. Model licenses and hardware
 
 - Eight editable workflow definitions; the first two have synthetic practice inputs.
 - A working generator that validates the two requests against Relay's own schema.
-- A dashboard specification, architecture diagram, rollout checklist and teaching script.
-- A manual scoring worksheet. Live classification, dashboard integration and notification delivery are still implementation work.
+- A dashboard starter with persistent labels for its running synthetic session, architecture diagram, audio, rollout checklist and teaching script.
+- A manual scoring worksheet. Model classification and notification delivery are still implementation work. Live account connections require an owner-authenticated host; never expose the synthetic demo as a production inbox.

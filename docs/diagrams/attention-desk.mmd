@@ -1,0 +1,16 @@
+flowchart TD
+  Gmail[Authorized Gmail thread metadata] --> History[Latest message direction]
+  Mac[Read-only local Messages snapshot] --> History
+  History --> DB[Owner-private Attention Desk database]
+  DB --> UI[DreyOS Attention Desk]
+  UI --> Original[Open original or find sender and timestamp]
+  UI --> Important[Important]
+  UI --> NotImportant[Not important]
+  UI --> Ignored[Ignored]
+  Important --> DB
+  NotImportant --> DB
+  Ignored --> DB
+  New[New message version] --> Review[Return to needs review]
+  Review --> DB
+  UI --> Learn[Diagram, narration, transcript, practice]
+  Boundary[No paid model calls, automatic replies or inbox mutations]

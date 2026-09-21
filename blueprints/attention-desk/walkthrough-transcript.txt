@@ -1,0 +1,10 @@
+Welcome to Attention Desk, inside Drey O S.
+This dashboard helps you work through the conversations that may need your attention, including older messages you have not replied to.
+Start with Refresh email. The dashboard reads recent Gmail threads without changing your inbox. Choose Load older email to work through another page of history.
+The latest incoming message is a candidate for your attention. It is not proof that you owe a reply. Newsletters, group conversations, and replies sent in a different thread still need your judgment.
+Open the original conversation, then choose Important, Not important, or Ignored. Select Save label. Important keeps the conversation visible. Not important files it into its own view. Ignored dismisses it from the attention queue. You can change any decision later. None of these actions deletes, archives, or marks the original message read.
+A new message returns the conversation to review. Use All imported to see the full saved queue, including conversations where your latest message was outgoing.
+Text messages come from a dated snapshot of the Messages history available on your Mac. They are not a live feed. Check the source status before relying on freshness.
+This version uses simple history rules and your judgment. It does not call a paid model or automatically send replies or alerts.
+For practice, open Learn it your way and choose Start practice. Mark the example important, change it to ignored, then restore it to needs review. That example is synthetic and cannot change your real messages.
+The downloadable blueprint includes the diagram, this transcript, editable templates, and a written exercise. Each friend installs their own copy with their own accounts.

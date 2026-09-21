@@ -102,7 +102,11 @@ The project is MIT licensed. Model/runtime licenses are separate. It is independ
 
 ## For the coaching group
 
-Start with [Attention Desk: blueprint and offline practice](blueprints/attention-desk/README.md): eight editable workflow templates, two synthetic exercises, a DreyOS dashboard contract and a ready-to-copy coaching lesson. Live inbox connectors, dashboard integration and notification delivery are not installed by this package.
+Start with [Attention Desk](blueprints/attention-desk/README.md): eight editable workflow templates, an interactive dashboard starter, two synthetic exercises, a narrated walkthrough and a ready-to-copy coaching lesson. The DreyOS owner installation supports read-only Gmail history and imported Mac text snapshots; the public demo uses synthetic data. Automatic notifications and AI classification are not enabled.
+
+![Attention Desk message-to-review workflow](docs/diagrams/attention-desk.svg)
+
+[Editable Attention Desk diagram](docs/diagrams/attention-desk.mmd) · [Listen to the walkthrough](blueprints/attention-desk/dashboard/engine/public/attention-walkthrough.mp3) · [Try the dashboard](blueprints/attention-desk/dashboard/README.md)
 
 See [ten concrete trial workflows](docs/use-cases.md). Start with public-document relevance or skill shortlisting. Compare proposed choices to reviewed answers before enabling any workflow. Keep arithmetic, money, authorization and execution in code or existing approval flows.
 

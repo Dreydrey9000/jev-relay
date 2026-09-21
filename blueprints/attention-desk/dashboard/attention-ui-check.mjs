@@ -1,0 +1,11 @@
+import {readFileSync,existsSync} from 'node:fs';
+import assert from 'node:assert/strict';
+const base=new URL('./engine/public/',import.meta.url);
+const html=readFileSync(new URL('attention.html',base),'utf8');
+const css=readFileSync(new URL('attention.css',base),'utf8');
+const js=readFileSync(new URL('attention-ui.js',base),'utf8');
+for(const value of ['lang="en"','name="viewport"','role="status"','role="alert"','<audio controls','<summary>','alt=','<label>','id="practice"'])assert(html.includes(value),value);
+for(const value of ['prefers-reduced-motion',':focus-visible','min-height:44px','max-width:100%'])assert(css.includes(value),value);
+assert(!/innerHTML|\.outerHTML|\balert\(|\bconfirm\(/.test(js),'unsafe DOM/notification primitive');
+for(const name of ['attention-flow.svg','attention-walkthrough.mp3'])assert(existsSync(new URL(name,base)),name);
+console.log('Attention Desk static UI gate passed; browser checks are separate.');

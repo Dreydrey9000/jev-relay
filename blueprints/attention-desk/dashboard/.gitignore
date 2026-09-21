@@ -1,0 +1,7 @@
+*.db
+*.db-*
+*snapshot*.json
+private-*
+__pycache__/
+.env
+.env.*

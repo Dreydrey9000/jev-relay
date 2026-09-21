@@ -2,13 +2,13 @@
 
 **Outcome:** learn to turn messages into a reviewable attention queue without requiring a paid AI API.
 
-**Current level:** blueprint and offline practice. Email/text connectors, DreyOS dashboard and automatic alerts are not bundled. Local inference requires compatible hardware, a fully installed supported model and passing safeguards.
+**Current level:** interactive dashboard starter, blueprint and offline practice. The owner DreyOS installation has Gmail history and a Mac text snapshot. The public demo uses synthetic data, with no live credentials or messages. Automatic alerts and AI classification are not enabled. Local inference requires compatible hardware, a fully installed supported model and passing safeguards.
 
 ## Portal resource card
 
 - Title: Attention Desk — Your Inbox, Sorted
 - Subtitle: A local-first blueprint for noticing important messages and tracking follow-ups.
-- Includes: architecture, DreyOS dashboard specification, eight editable templates, two synthetic exercises, review worksheet and rollout checklist.
+- Includes: rendered architecture diagram, 111-second spoken walkthrough and transcript, interactive dashboard starter, eight editable templates, two synthetic exercises, review worksheet and rollout checklist.
 - Prerequisites: Python 3.10+ for practice; model/runtime requirements are separate.
 - Price: open-source templates; no required paid AI API for practice. Hardware, service access and optional providers may cost money.
 - Resource path in the Jev Relay repository: `blueprints/attention-desk/README.md`.

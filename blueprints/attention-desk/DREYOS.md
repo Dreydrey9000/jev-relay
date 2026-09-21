@@ -1,6 +1,14 @@
 # DreyOS Attention Desk dashboard
 
-Implementation contract, not an installed dashboard. Fit the existing DreyOS Bun/SQLite engine and lightweight UI; avoid creating another agent framework or standalone hosted inbox.
+Original implementation contract, followed by the current installed slice below. Fit the existing DreyOS Bun/SQLite engine and lightweight UI; avoid creating another agent framework or standalone hosted inbox.
+
+## Installed owner slice — September 21, 2026
+
+The private DreyOS `#attention` tab now serves `/attention` behind the existing login gate. `/api/attention/items` lists saved conversations, `/api/attention/sync` reads a bounded Gmail page, and `/api/attention/mark` saves a version-checked manual label. Mac text snapshots are imported through the owner-host CLI. A separate private SQLite file preserves labels across refreshes; a new message version returns an item to review. The public dashboard starter uses synthetic data and an in-memory store.
+
+Labels: Needs review, Important, Not important, Ignored. Filters include possible unanswered conversations, all imported and each label. Source links point to Gmail; texts show sender and timestamp when a reliable deep link is unavailable. No automatic source watcher, notifications, paid checks or local model inference is enabled.
+
+The broader proposed digest/profile/template API below remains a roadmap, not existing endpoints.
 
 ## Dashboard layout
 
