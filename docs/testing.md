@@ -5,9 +5,10 @@ Test date: September 20–21, 2026. These are separate kinds of evidence.
 ## Router and guards
 
 - 22 automated tests passed on macOS Python 3.12 and Linux Python 3.10.
+- [GitHub Actions](https://github.com/Dreydrey9000/jev-relay/actions/runs/35548951863) passed the same suite on Python 3.10, 3.11, 3.12 and 3.13 at commit `a0aa327`.
 - Tests cover provider policy, malformed responses, unavailable providers, cloud permission flags, input-secret tripwires, redirects, kill switches, low resources, monitored timeout and mid-flight termination.
 - Mocked provider results verify routing behavior; they do not measure model intelligence.
-- A clean Python 3.12 virtual environment installed the package using pip-compatible tooling. Running the installed module from outside the source checkout, without model configuration or credentials, returned the documented `local_disabled` review handoff.
+- A fresh clone of the public GitHub repository passed all 22 tests. A clean Python 3.12 virtual environment installed the package using pip-compatible tooling. Running the installed module from outside the source checkout, without model configuration or credentials, returned the documented `local_disabled` review handoff.
 
 ## Live hosted checks
 
@@ -27,4 +28,4 @@ The Nimble public endpoint returned HTTP 503 during the pilot. Its serialization
 
 ## Local model evaluation
 
-Pending the guarded Laya-MLX evaluation. Local outputs remain shadow advice requiring review, regardless of confidence. No claim of time savings, cost savings, or equivalence to hosted Jev is made.
+The Python 3.12 / MLX 0.32.2 GPU tensor smoke test passed under the host guard. Model-quality evaluation is pending the checkpoint download and a fresh resource-warning acknowledgement; no model-accuracy result is claimed yet. Local outputs remain shadow advice requiring review, regardless of confidence. No claim of time savings, cost savings, or equivalence to hosted Jev is made.

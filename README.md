@@ -33,6 +33,8 @@ Ensure `~/.local/bin` is on PATH. Start a new assistant session if needed for sk
 
 ## Local Laya setup (Apple Silicon)
 
+See the [pinned setup and evaluation commands](docs/local-setup.md).
+
 Use a dedicated environment with [Laya-MLX](https://github.com/mizorewww/laya-mlx). Our evaluation uses MLX 0.32.2 and `aac6fef/laya-mlx` revision `20aed815fc6acde75733882e7ec0e3f28aeb9717`. Install the optional runtime with `python -m pip install -r requirements-laya.lock` in a separate Python 3.12 environment. Download its checkpoint separately into a local directory. Keep model weights out of Git. The English model file is about 843 MB; runtime memory is larger. Published Laya context limits include questions and options.
 
 Create `~/.config/jev-relay/config.json` using absolute paths:
