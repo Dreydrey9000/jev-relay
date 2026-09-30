@@ -1,6 +1,6 @@
 flowchart TD
   A[Claude Code / Codex / Hermes Jax] --> B[Validate request and trusted routing flags]
-  B -->|Routine| C[Guarded offline local model]
+  B -->|Routine| C[Routine local lane: Laya-MLX on Mac or OpenJev service on Linux]
   B -->|Important and sanitized and cloud allowed| D[Hosted Jev]
   B -->|Important but cloud not permitted| F[Calling assistant reviews]
   C -->|Answer| E[Validate response]

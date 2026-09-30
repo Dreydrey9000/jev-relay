@@ -24,9 +24,10 @@ This is an early experimental release. It routes **bounded decisions**, not enti
 
 | Provider | Integration | Verification |
 | --- | --- | --- |
-| Laya-MLX on Apple Silicon | The only implemented local model adapter; requires a complete checkpoint and passing resource guard | GPU runtime smoke passed; end-to-end model evaluation remains pending |
+| Laya-MLX on Apple Silicon | Default local model adapter; requires a complete checkpoint and passing resource guard | GPU runtime smoke passed; end-to-end model evaluation remains pending |
 | Hosted TypeSafe Jev | Explicit important, sanitized checks only | Live checks passed on macOS and the Jax Linux host |
-| Nimble, SemIf/OpenJev, Kev, Decider and other catalog entries | Research candidates; no adapters or automatic selection in this release | See the catalog for individual research/test status |
+| OpenJev verdict service (Linux or macOS) | Routine lane via `"local_backend": "openjev"`; talks only to a loopback `/decide` service (default `http://127.0.0.1:8940`) | Live on the Jax Linux host since 2026-09-30; adapter covered by `tests/test_openjev.py`. Weaker than hosted Jev on judgment calls, so keep answers in shadow review |
+| Nimble, SemIf, Kev, Decider and other catalog entries | Research candidates; no adapters or automatic selection in this release | See the catalog for individual research/test status |
 
 Installing a skill makes this tool available for proactive, suitable use by the calling assistant. It does not prove a model was loaded or used. Every response reports the provider actually used. If local inference is unavailable, the caller reviews the decision directly; Relay never silently switches a routine request to a paid provider. Jax currently has no local model configured on its Linux host.
 
@@ -69,6 +70,18 @@ Create `~/.config/jev-relay/config.json` using absolute paths:
   "guard_module": "/absolute/path/to/jev-relay/jev_relay/guard.py"
 }
 ```
+
+On a host that already runs a verdict service built on [openJev-verdict-2.0](https://github.com/Heman10x-NGU/openJev-verdict-2.0), point the routine lane at it instead of loading a model:
+
+```json
+{
+  "local_enabled": true,
+  "local_backend": "openjev",
+  "openjev_url": "http://127.0.0.1:8940"
+}
+```
+
+The OpenJev backend refuses any non-loopback URL, sends one question per call, maps option text back to your option names, and renormalizes after OpenJev sets aside its "insufficient evidence" share. Its `abstain` flag is passed through on each answer.
 
 The built-in guard supports macOS/Linux. The actual Laya-MLX worker needs Apple Silicon. A host can supply a stricter compatible guard; Drey's installation retains his existing guard. The worker is offline and never downloads weights. Long instructions, options, or state are rejected instead of silently truncated. Calls run with a process lock and hard timeout. On Mac they use background task policy and reduced priority. Kill switches, low disk, memory pressure and thermal warnings are respected. The built-in guard cannot inventory every third-party inference runtime; keep other models unloaded and use your host's stricter guard when available.
 

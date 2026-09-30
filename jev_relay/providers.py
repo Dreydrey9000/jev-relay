@@ -7,6 +7,7 @@ from pathlib import Path
 import platform
 import subprocess
 import sys
+import urllib.parse
 import urllib.request
 
 
@@ -47,10 +48,58 @@ def load_guard(path):
     return guard
 
 
+LOOPBACK = ("127.0.0.1", "localhost", "::1")
+
+
+def openjev(request, config):
+    """Local OpenJev verdict service (POST /decide, one question per call). Loopback only:
+    this is the routine lane, so request text must never leave the machine."""
+    url = config.get("openjev_url", "http://127.0.0.1:8940")
+    parsed = urllib.parse.urlparse(url)
+    if parsed.scheme != "http" or parsed.hostname not in LOOPBACK:
+        raise ProviderUnavailable("openjev_url_must_be_loopback")
+    state = request["state"] if isinstance(request["state"], str) else json.dumps(request["state"])
+    answers = {}
+    for key, q in request["questions"].items():
+        kind = q["type"]
+        if kind == "choice":
+            labels = {(desc or name): name for name, desc in q["criteria"].items()}
+        elif kind == "score":
+            labels = {text: str(i) for i, text in enumerate(q["criteria"])}
+        else:
+            labels = {"true": "true", "false": "false"}
+        if len(labels) != (len(q["criteria"]) if kind != "noul" else 2):
+            raise ProviderUnavailable("openjev_duplicate_option_text")
+        body = json.dumps({"type": kind, "question": q["instructions"], "options": list(labels), "state": state}).encode()
+        req = urllib.request.Request(url.rstrip("/") + "/decide", data=body, headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.build_opener(NoRedirect).open(req, timeout=config.get("openjev_timeout", 20)) as resp:
+                out = json.loads(resp.read(262144))
+        except Exception:
+            raise ProviderUnavailable("openjev_unreachable") from None
+        dist = {labels[k]: float(v) for k, v in (out.get("distribution") or {}).items() if k in labels}
+        total = sum(dist.values())
+        if total <= 0:
+            raise ProviderUnavailable("openjev_empty_distribution")
+        # OpenJev drops its "insufficient evidence" mass; renormalize over the real options.
+        probs = {name: dist.get(name, 0.0) / total for name in labels.values()}
+        abstain = bool(out.get("abstain"))
+        if kind == "noul":
+            answers[key] = {"type": "noul", "noul": probs["true"], "abstain": abstain}
+        elif kind == "choice":
+            answers[key] = {"type": "choice", "choice": max(probs, key=probs.get), "probabilities": probs, "abstain": abstain}
+        else:
+            answers[key] = {"type": "score", "score": sum(int(k) * v for k, v in probs.items()), "probabilities": probs, "abstain": abstain}
+    return {"answers": answers, "model": "openjev:" + str(out.get("model", "unknown"))}
+
+
 def local(request, config, warning_ack=False):
     # A trusted, installed guard is mandatory. Never turn it on from this code.
     if not config.get("local_enabled"):
         raise ProviderUnavailable("local_disabled")
+    if config.get("local_backend") == "openjev":
+        # An already-running service, not a model load, so the RAM guard does not apply.
+        return openjev(request, config)
     guard = load_guard(config["guard_module"])
     guard.MODEL_RAM_GIB["jev-relay-laya"] = 2.0
     preflight = guard.ram_preflight("jev-relay-laya", warning_ack=warning_ack)

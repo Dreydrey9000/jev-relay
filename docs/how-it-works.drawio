@@ -14,7 +14,7 @@
         <mxCell id="policy" value="Validate request + choose policy&lt;br&gt;Importance is set by the calling agent" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=21;fontColor=#10243A;fillColor=#FFFFFF;strokeColor=#B4C6DB;spacing=18;">
           <mxGeometry as="geometry" x="420" y="285" width="460" height="90" />
         </mxCell>
-        <mxCell id="routine" value="&lt;b&gt;ROUTINE&lt;/b&gt;&lt;br&gt;Guarded local Laya&lt;br&gt;Offline · bounded · one worker" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=21;fontColor=#10243A;fillColor=#E0F2EF;strokeColor=#B4C6DB;spacing=18;">
+        <mxCell id="routine" value="&lt;b&gt;ROUTINE&lt;/b&gt;&lt;br&gt;Local lane: Laya (Mac) or OpenJev (Linux)&lt;br&gt;Offline · bounded · loopback only" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=21;fontColor=#10243A;fillColor=#E0F2EF;strokeColor=#B4C6DB;spacing=18;">
           <mxGeometry as="geometry" x="90" y="455" width="390" height="140" />
         </mxCell>
         <mxCell id="important" value="&lt;b&gt;IMPORTANT + SANITIZED + ALLOWED&lt;/b&gt;&lt;br&gt;TypeSafe Jev API&lt;br&gt;One bounded call · no silent retries" vertex="1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Helvetica;fontSize=19;fontColor=#10243A;fillColor=#E7ECFE;strokeColor=#B4C6DB;spacing=18;">
