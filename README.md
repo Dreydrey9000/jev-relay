@@ -83,6 +83,8 @@ On a host that already runs a verdict service built on [openJev-verdict-2.0](htt
 
 The OpenJev backend refuses any non-loopback URL, sends one question per call, maps option text back to your option names, and renormalizes after OpenJev sets aside its "insufficient evidence" share. Its `abstain` flag is passed through on each answer.
 
+One local job may run for 180 seconds before the guard stops it. Set `"local_timeout"` (10 to 600 seconds) in the config to change that. The limit was a fixed 60 seconds until 2026-10-13, which a cold model load alone could exceed on a busy Mac.
+
 The built-in guard supports macOS/Linux. The actual Laya-MLX worker needs Apple Silicon. A host can supply a stricter compatible guard; Drey's installation retains his existing guard. The worker is offline and never downloads weights. Long instructions, options, or state are rejected instead of silently truncated. Calls run with a process lock and hard timeout. On Mac they use background task policy and reduced priority. Kill switches, low disk, memory pressure and thermal warnings are respected. The built-in guard cannot inventory every third-party inference runtime; keep other models unloaded and use your host's stricter guard when available.
 
 To disable local inference, create `~/.config/jev-relay/DISABLED`. Drey's existing `~/.codex/local-ai-router/DISABLED` is also honored. Never remove a watchdog kill switch without its owner's explicit approval. `--ack-resource-warning` acknowledges a currently reviewed soft warning only; it cannot bypass hard blocks.

@@ -93,6 +93,18 @@ def openjev(request, config):
     return {"answers": answers, "model": "openjev:" + str(out.get("model", "unknown"))}
 
 
+LOCAL_TIMEOUT_DEFAULT, LOCAL_TIMEOUT_MIN, LOCAL_TIMEOUT_MAX = 180, 10, 600
+
+
+def local_timeout(config):
+    """Seconds one supervised local job may run before the guard stops it. Was a fixed 60, but a cold
+    Laya load alone passed that on a Mac with full swap (2026-10-13). Bounded so config cannot remove it."""
+    value = config.get("local_timeout", LOCAL_TIMEOUT_DEFAULT)
+    if type(value) not in (int, float) or not LOCAL_TIMEOUT_MIN <= value <= LOCAL_TIMEOUT_MAX:
+        raise ProviderUnavailable("local_timeout_must_be_%s_to_%s_seconds" % (LOCAL_TIMEOUT_MIN, LOCAL_TIMEOUT_MAX))
+    return value
+
+
 def local(request, config, warning_ack=False):
     # A trusted, installed guard is mandatory. Never turn it on from this code.
     if not config.get("local_enabled"):
@@ -100,6 +112,7 @@ def local(request, config, warning_ack=False):
     if config.get("local_backend") == "openjev":
         # An already-running service, not a model load, so the RAM guard does not apply.
         return openjev(request, config)
+    timeout = local_timeout(config)
     guard = load_guard(config["guard_module"])
     guard.MODEL_RAM_GIB["jev-relay-laya"] = 2.0
     preflight = guard.ram_preflight("jev-relay-laya", warning_ack=warning_ack)
@@ -120,7 +133,7 @@ def local(request, config, warning_ack=False):
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise ProviderUnavailable("local_busy") from None
-        result = guard.run_monitored_command(command, timeout=60, env=env, input_text=json.dumps(request))
+        result = guard.run_monitored_command(command, timeout=timeout, env=env, input_text=json.dumps(request))
     if result.returncode:
         raise ProviderUnavailable("local_worker_failed")
     if len(result.stdout.encode()) > 262144:

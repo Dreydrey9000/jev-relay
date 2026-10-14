@@ -5,6 +5,7 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+import tempfile
 import unittest
 from unittest.mock import Mock, patch
 
@@ -100,6 +101,27 @@ class RoutingTests(unittest.TestCase):
         with patch("jev_relay.providers.load_guard",return_value=guard):
             with self.assertRaises(ProviderUnavailable):local(REQUEST,{"local_enabled":True,"guard_module":"fixture"})
         guard.run_monitored_command.assert_not_called()
+
+    def run_local(self, guard, config):
+        """Run `local` against an approving fake guard, with the checkpoint and lock in a scratch folder."""
+        guard.MODEL_RAM_GIB={};guard.ram_preflight.return_value={"allowed":True}
+        guard.run_monitored_command.return_value=subprocess.CompletedProcess([],0,json.dumps(ANSWER),"")
+        with tempfile.TemporaryDirectory() as folder, patch("jev_relay.providers.load_guard",return_value=guard):
+            return local(REQUEST,{"local_enabled":True,"guard_module":"fixture","model_path":folder,"lock_path":str(Path(folder)/"lock"),**config})
+
+    def test_local_time_limit_defaults_to_three_minutes(self):
+        guard=Mock();self.run_local(guard,{})
+        self.assertEqual(guard.run_monitored_command.call_args.kwargs["timeout"],180)
+
+    def test_local_time_limit_comes_from_config(self):
+        guard=Mock();self.run_local(guard,{"local_timeout":90})
+        self.assertEqual(guard.run_monitored_command.call_args.kwargs["timeout"],90)
+
+    def test_local_time_limit_out_of_range_never_starts_the_worker(self):
+        for bad in (0,9,601,"120",True,None,float("inf")):
+            guard=Mock()
+            with self.assertRaises(ProviderUnavailable,msg=repr(bad)):self.run_local(guard,{"local_timeout":bad})
+            guard.run_monitored_command.assert_not_called()
 
     def test_redirect_never_forwards_credential(self):
         with self.assertRaises(ProviderUnavailable): NoRedirect().redirect_request(None,None,302,"",{},"https://untrusted.invalid")
